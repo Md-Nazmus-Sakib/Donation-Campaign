@@ -7,9 +7,9 @@ const Header = () => {
         <div>
             <div style={{
                 backgroundImage: `linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),url(${headerImg})`, backgroundSize: "cover"
-            }} className="w-full h-screen">
+            }} className="w-full min-h-screen">
                 <Navbar></Navbar>
-                <div className='flex justify-center items-center h-full '>
+                <div className='flex justify-center items-center h-full p-4 '>
                     <div>
                         <h1 className='text-5xl font-bold mb-12'>I Grow By Helping People In Need</h1>
                         <div className='flex justify-center'>
