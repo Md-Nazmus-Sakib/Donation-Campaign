@@ -1,13 +1,14 @@
 import React from 'react';
 import Header from '../Header/Header';
-import Category from '../../Category/Category';
-import { useLoaderData } from 'react-router-dom';
+import Category from '../Category/Category';
+
 
 const Home = () => {
-    const categories = useLoaderData();
+
     return (
         <div>
-            <Category categories={categories}></Category>
+            <Header></Header>
+            <Category ></Category>
         </div>
     );
 };
