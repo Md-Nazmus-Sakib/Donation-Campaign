@@ -43,21 +43,13 @@ const DonateDetails = () => {
                 localStorage.setItem('donate', JSON.stringify([...donation, id]))
 
             }
-
-
-
         }
-
-
     }
-
-
-
     return (
         <div>
             <div className="card card-compact md:w-1/2 mx-auto my-12 bg-base-100 shadow-xl">
                 <div className='relative'>
-                    <figure><img src={image} alt="" /></figure>
+                    <figure><img src={image} alt="" className='w-full rounded-t-xl' /></figure>
                     <div className='absolute bg-slate-400 bottom-0 left-0 w-full p-6 opacity-80'>
                         <button onClick={() => handelDonate(id)} style={{ backgroundColor: `${text_color}` }} className='px-4 py-2 rounded-xl font-semibold text-white'>Donate ${donating_money}</button>
                     </div>

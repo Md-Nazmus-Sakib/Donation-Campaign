@@ -2,59 +2,45 @@ import React, { useEffect, useRef, useState } from 'react';
 import Header from '../Header/Header';
 import Category from '../Category/Category';
 import Swal from 'sweetalert2';
+import { useLoaderData } from 'react-router-dom';
 
 
 const Home = () => {
-
-    // const [categoriesData, setCategoriesData] = useState([]);
-    const [categories, setCategories] = useState([]);
-
-
-    const [search, setSearch] = useState(categories)
-    // console.log(search)
-
-
+    const allCategoryData = useLoaderData();
+    const [categoriesData, setCategoriesData] = useState([]);
+    const [searchValue, setSearchValue] = useState('')
     const inputRef = useRef(null);
-
     useEffect(() => {
-        fetch('campaigns.json')
-            .then(res => res.json())
-            .then(data => setCategories(data))
-    }, [])
-
-
-
+        if (searchValue) {
+            const searchCategory = allCategoryData.filter(category => (category.category).toLowerCase() === searchValue.toLowerCase());
+            if (searchCategory.length === 0) {
+                Swal.fire({
+                    title: 'OOps!',
+                    text: 'No Data Found.',
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                })
+                setCategoriesData([])
+            }
+            else {
+                setCategoriesData(searchCategory)
+            }
+        }
+    }, [searchValue])
 
     const handelSearch = () => {
         const searchText = inputRef.current.value;
-        setSearch(searchText)
-        // console.log(search)
-        if (searchText) {
-            const searchCategory = categories.filter(category => (category.category).toLowerCase() === searchText.toLowerCase());
-            // console.log(searchCategory)
-            if (searchCategory.length !== 0) {
-                return (setCategories(searchCategory))
-            }
-            else {
-                Swal.fire({
-                    title: 'Opp!',
-                    text: 'No Category Match',
-                    icon: 'success',
-                    confirmButtonText: 'Ok'
-                })
-            }
-
-        }
-        else {
-            return (alert('no data found'))
-        }
-
-
+        setSearchValue(searchText)
+        inputRef.current.value = '';
     }
     return (
         <div>
             <Header handelSearch={handelSearch} inputRef={inputRef}></Header>
-            <Category categories={categories} ></Category>
+            {searchValue ?
+                <Category categories={categoriesData} ></Category>
+
+                : <Category categories={allCategoryData} ></Category>
+            }
         </div>
     );
 };

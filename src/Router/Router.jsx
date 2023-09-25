@@ -8,11 +8,14 @@ import MainLayout from "../Layout/MainLayout";
 import DonateDetails from "../component/DonateDetails/DonateDetails";
 import Donation from "../component/Donation/Donation";
 import Statistic from "../component/Statistic/Statistic";
+import ErrorPage from "../component/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <Home></Home>,
+        loader: () => fetch('/campaigns.json'),
+        errorElement: <ErrorPage></ErrorPage>
     },
     {
         path: "/statistic",
@@ -26,7 +29,7 @@ const router = createBrowserRouter([
                 path: '/donation',
                 element: <Donation></Donation>,
                 loader: () => fetch('/campaigns.json')
-            }
+            },
         ]
     },
     {
