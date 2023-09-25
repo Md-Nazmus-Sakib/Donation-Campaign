@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const DonationDetails = ({ storeData }) => {
     const { id, image, title, category, donating_money, text_color, bg_color, category_color } = storeData;
@@ -11,7 +12,10 @@ const DonationDetails = ({ storeData }) => {
                     <h2 className="card-title">{title}</h2>
                     <p style={{ color: `${text_color}` }} className='text-xl font-bold'>$ {donating_money}</p>
                     <div className="card-actions">
-                        <button style={{ backgroundColor: `${text_color}` }} className="btn text-white">View Details</button>
+                        <Link to={`/category/${id}`}>
+                            <button style={{ backgroundColor: `${text_color}` }} className="btn text-white">View Details</button>
+                        </Link>
+
                     </div>
                 </div>
             </div>

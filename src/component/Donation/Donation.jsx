@@ -17,10 +17,8 @@ const Donation = () => {
 
     useEffect(() => {
         const donation = getFromLs();
-        console.log(donation)
         let dataLs = [];
         for (const lsData of donation) {
-            console.log(lsData)
             const findDonation = campaignsData.find(campaign => campaign.id === parseInt(lsData));
 
 
@@ -31,8 +29,8 @@ const Donation = () => {
     }, [])
 
     return (
-        <div>
-            <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+        <div className='my-12 mx-4'>
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-4 my-12'>
                 {
                     showAll ? localStoreData?.map(storeData => <DonationDetails
                         key={storeData.id}
@@ -45,11 +43,11 @@ const Donation = () => {
                 }
 
             </div>
-            <div className='flex justify-center my-12'>
-                <button onClick={() => setShowAll(!showAll)} className='btn btn-primary'>{
-                    showAll ? 'Show Less' : 'Show All'
-                }</button>
-            </div>
+            {
+                (localStoreData.length > 4) && (showAll === false) && <div className='flex justify-center my-12'>
+                    <button onClick={() => setShowAll(!showAll)} className='btn btn-primary'>Show All</button>
+                </div>
+            }
         </div>
     );
 };

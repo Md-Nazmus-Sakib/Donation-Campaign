@@ -4,8 +4,7 @@ import Swal from 'sweetalert2';
 
 const DonateDetails = () => {
     const [donateDetails, setDonateDetails] = useState({});
-    const [lsStoreData, setLsStoreData] = useState({});
-    // console.log(lsStoreData)
+
     const { image, title, donating_money, details, text_color } = donateDetails;
     const campaignsData = useLoaderData();
     const { id } = useParams();
@@ -32,7 +31,6 @@ const DonateDetails = () => {
         })
         let donation = getFromLs();
 
-        console.log('donation', donation)
         if (donation.length === 0) {
             localStorage.setItem('donate', JSON.stringify([id]))
         }
