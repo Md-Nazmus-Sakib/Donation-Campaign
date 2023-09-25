@@ -54,7 +54,7 @@ const Statistic = () => {
 
     ];
     return (
-        <div>
+        <div className='max-w-7xl mx-auto p-4'>
             <Navbar></Navbar>
             <div className='flex justify-center'>
                 <PieChart width={400} height={400}>
