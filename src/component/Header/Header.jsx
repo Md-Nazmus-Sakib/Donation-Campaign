@@ -2,7 +2,7 @@ import React from 'react';
 import headerImg from '../../assets/header.png'
 import Navbar from '../Navbar/Navbar';
 
-const Header = () => {
+const Header = ({ handelSearch, inputRef }) => {
     return (
         <div>
             <div style={{
@@ -13,8 +13,8 @@ const Header = () => {
                     <div>
                         <h1 className='text-5xl font-bold mb-12'>I Grow By Helping People In Need</h1>
                         <div className='flex justify-center'>
-                            <input type="text" placeholder="Search…" className="input w-1/2  " />
-                            <button className="py-3 px-6 rounded-e-lg bg-red-400">
+                            <input type="text" ref={inputRef} placeholder="Search…" className="input w-1/2  " />
+                            <button onClick={handelSearch} className="py-3 px-6 rounded-e-lg bg-red-400">
                                 Search
                             </button>
                         </div>
